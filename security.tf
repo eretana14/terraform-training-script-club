@@ -14,3 +14,10 @@ resource "akamai_appsec_security_policy" "security-policy" {
   security_policy_prefix = "t14"
 }
 
+# resource "akamai_appsec_security_policy" "security-policy-two" {
+#   config_id              = akamai_appsec_configuration.security_configuration.config_id
+#   default_settings       = true
+#   security_policy_name   = "second-Policy"
+#   security_policy_prefix = "t15"
+# }
+

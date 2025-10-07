@@ -9,6 +9,6 @@ terraform {
 }
 
 provider "akamai" {
-  edgerc         = "~/.edgerc"
-  config_section = "terraform-scriptclub"
+  edgerc         = var.edgerc_path
+  config_section = var.config_section
 }
