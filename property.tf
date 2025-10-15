@@ -36,7 +36,7 @@ data "akamai_property_rules_builder" "rules_builder" {
     behavior {
       origin {
         origin_type           = "CUSTOMER"
-        hostname              = "script-club-origin-1ovshfqo.fermyon.app"
+        hostname              = var.ab_test == "A" ? "script-club-origin-1ovshfqo.fermyon.app" : "origin.mpulse-akaed.com"
         forward_host_header   = "ORIGIN_HOSTNAME"
         cache_key_hostname    = "REQUEST_HOST_HEADER"
         compress              = true
