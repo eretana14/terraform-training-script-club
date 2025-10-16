@@ -12,5 +12,10 @@ variable "config_section" {
 
 variable "ab_test" {
   description = "Conditionals exercise"
-  type = string
+  type        = string
+}
+
+variable "apps" {
+  type        = list(string)
+  description = "For Interactions exercise"
 }
