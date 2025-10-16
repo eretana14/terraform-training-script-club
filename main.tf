@@ -28,8 +28,9 @@ output "my_property" {
 }
 
 locals {
-  notes         = join(" - ", ["TF-3001", data.akamai_group.single_group.id])
-  app_hostnames = [for app in var.apps : "${app}.example.com"]
+  notes = join(" - ", ["TF-3001", data.akamai_group.single_group.id])
+  app_hostnames = concat(["eretana-terraform-scriptclub.akamaidemo.com"],
+  [for app in var.apps : "${app}.example.com"])
 }
 
 output "app_hostnames" {
