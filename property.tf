@@ -52,6 +52,11 @@ data "akamai_property_rules_builder" "rules_builder" {
         }
       }
     }
+    behavior {
+      caching {
+        behavior = "NO_STORE"
+      }
+    }
     children = [
       data.akamai_property_rules_builder.compress_text_content.json
     ]
@@ -95,7 +100,6 @@ resource "akamai_property" "property" {
       cname_to               = akamai_edge_hostname.edge_hostname.edge_hostname
       cert_provisioning_type = "DEFAULT"
     }
-
   }
 }
 
@@ -103,3 +107,29 @@ output "my_default_rule" {
   value = data.akamai_property_rules_builder.rules_builder
 }
 
+# resource "akamai_property_activation" "my_activation-staging" {
+#   property_id                    = akamai_property.property.id
+#   network                        = "STAGING"
+#   contact                        = ["eretana@akamai.com"]
+#   note                           = "initial version"
+#   version                        = var.activate_latest_on_staging ? akamai_property.property.latest_version : akamai_property.property.staging_version
+#   auto_acknowledge_rule_warnings = true
+#   # lifecycle {
+#   #   ignore_changes = [
+#   #       note
+#   #   ]
+#   # }
+# }
+
+# resource "akamai_property_activation" "my_activation-production" {
+#   property_id                    = akamai_property.property.id
+#   network                        = "PRODUCTION"
+#   contact                        = ["eretana@akamai.com"]
+#   note                           = "initial version"
+#   version                        = var.activate_latest_on_production ? akamai_property.property.latest_version : akamai_property.property.production_version
+#   auto_acknowledge_rule_warnings = true
+#   timeouts {
+#     default = "1h"
+#   }
+#   depends_on = [akamai_property_activation.my_activation-staging]
+# }
